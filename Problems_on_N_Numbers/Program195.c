@@ -1,66 +1,68 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
-int SumEven(int *ptr, int iSize)
+// Step 5 : Perform the operation on array
+int SumEven(int *Arr, int iSize)
 {
-    int iCnt = 0;
+    int iCnt =0;
     int iSum = 0;
-    for(iCnt = 0; iCnt<iSize; iCnt++)
+    //      1           2           3
+    for(iCnt = 0; iCnt < iSize; iCnt++)
     {
-        if(ptr[iCnt] % 2 == 0)
+        if(Arr[iCnt] % 2 == 0)    // 4
         {
-            iSum = iSum + ptr[iCnt];
+            iSum = iSum + Arr[iCnt];
         }
     }
-
     return iSum;
 }
 
-int SumOdd(int *ptr, int iSize)
+int SumOdd(int *Arr, int iSize)
 {
+    int iSum = 0; 
     int iCnt = 0;
-    int iSum = 0;
-    for(iCnt = 0; iCnt<iSize; iCnt++)
+
+    for(iCnt = 0; iCnt < iSize; iCnt++)
     {
-        if(ptr[iCnt] % 2 != 0)
+        if((Arr[iCnt] % 2) != 0)
         {
-            iSum = iSum + ptr[iCnt];
+            iSum = iSum + Arr[iCnt];
         }
     }
-
     return iSum;
 }
 
 int main()
 {
-    int iLength = 0;
-    int *Arr = NULL;
-    int iRet = 0;
-    int iCnt = 0;
+    int *ptr = NULL;
+    int iLength = 0, i = 0, iRet = 0;
 
-    printf("Enter the length of an array\n");
+    // Step 1 : Accept size of array
+    printf("Enter number of elements : \n");
     scanf("%d",&iLength);
 
-    Arr = (int *)malloc(iLength * sizeof(int));
-    
-    printf("Enter the elements inside Array\n");
-    for(iCnt = 0; iCnt<iLength; iCnt++)
+    // Step 2 : Allocate memory for array
+    ptr = (int *)malloc(iLength * sizeof(int));
+
+    // Step 3 : Accept the elements of array
+    printf("Enter the elements : \n");
+
+    for(i = 0 ;i < iLength; i++)
     {
-        scanf("%d",&Arr[iCnt]);
+        scanf("%d",&ptr[i]);
     }
 
-    printf("Elements of array are :\n");
-    for(iCnt = 0; iCnt<iLength; iCnt++)
-    {
-        printf("%d\n",Arr[iCnt]);
-    }
 
-    iRet = SumEven(Arr,iLength);
-    printf("Summation of Even elements in array is : %d\n",iRet);
+    // Step 4 : Call the function
+    iRet = SumEven(ptr, iLength);
+    printf("Summation of even elements is: %d\n",iRet);
 
-    iRet = SumOdd(Arr,iLength);
-    printf("Summation of Odd elements in array is : %d\n",iRet);
+    iRet = SumOdd(ptr, iLength);
+    printf("Summation of odd elements is: %d\n",iRet);
 
-    free(Arr);
+    // Step 6 : Deallocate the memory
+    free(ptr);
+
     return 0;
 }

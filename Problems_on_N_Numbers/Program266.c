@@ -4,71 +4,69 @@
 
 void Accept(int *Arr, int iLength)
 {
+    printf("Enter the elements inside array: \n");
+    
     int iCnt = 0;
-    printf("Enter the elements inside Array\n");
-    for(iCnt = 0; iCnt<iLength; iCnt++)
+    for(iCnt = 0; iCnt < iLength; iCnt++)
     {
         scanf("%d",&Arr[iCnt]);
     }
+    
 }
 
-void Display(int *Arr,int iLength)
+void Display(int *Arr, int iLength)
 {
+    printf("Elements inside array are :\n");
+    
     int iCnt = 0;
-    printf("Elements of array are :\n");
-    for(iCnt = 0; iCnt<iLength; iCnt++)
+    for(iCnt = 0; iCnt < iLength; iCnt++)
     {
-        printf("%d\n",Arr[iCnt]);
+        printf("%d\t",Arr[iCnt]);
     }
+    printf("\n");
 }
 
-bool CheckArrayPalindrome(int *ptr,int iLength)
+bool CheckPalindrome(int *Arr, int iLength)
 {
-    int iStart = 0;
-    int iEnd = (iLength-1);
-    bool bFlag = true;
     int iCnt = 0;
+    int iStart = 0;
+    int iEnd = iLength-1;
+    bool bflag = true;
 
     while(iStart < iEnd)
     {
-            if(ptr[iStart] != ptr[iEnd])
-            {
-                bFlag = false;
-                break;
-            }
-
+        if(Arr[iStart] != Arr[iEnd])
+        {
+            bflag = false;
+            break;
+        }
         iStart++;
         iEnd--;
     }
-    return bFlag;
-}
 
+    return bflag;
+}
 int main()
 {
-    int iLength = 0;
-    int *Arr = NULL;
-    bool bRet = false;
-    int iCnt = 0;
+    int iSize = 0;
+    int *ptr = NULL;
 
-    printf("Enter the length of an array\n");
-    scanf("%d",&iLength);
+    printf("Enter the size of array: \n");
+    scanf("%d",&iSize);
 
-    Arr = (int *)malloc(iLength * sizeof(int));
-    
-    
-    Accept(Arr,iLength);
-    Display(Arr,iLength);
+    ptr = (int *) malloc(iSize * sizeof(int));
 
-    bRet = CheckArrayPalindrome(Arr,iLength);
+    Accept(ptr,iSize);
+    Display(ptr,iSize);
+
+    bool bRet = CheckPalindrome(ptr,iSize);
     if(bRet == true)
     {
-        printf("Array is Palindrome\n");
+        printf("Array is palindrome\n");
     }
     else
     {
-        printf("Array is not Palindrome\n");
+        printf("Array is not palindrome\n");
     }
-
-    free(Arr);
     return 0;
 }
